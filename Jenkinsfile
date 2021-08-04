@@ -32,14 +32,17 @@ pipeline {
     post {
         always {
             // this is triggered everytime
+            echo 'Remember to restart your application'
         }
 
         success {
             // this is triggered when a post is successful
+            echo 'Yay, it was completed'
         }
 
         failure {
             // this is triggered when a pipeline fails
+            echo 'Something went wrong, debug time'
         }
     }
 }
