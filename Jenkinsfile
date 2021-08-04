@@ -5,9 +5,9 @@ pipeline {
 
     agent any
 
-    environment {
-        //environment variables go here
-    }
+//     environment {
+//         //environment variables go here
+//     }
 
     stages {
         stage("Build") {
