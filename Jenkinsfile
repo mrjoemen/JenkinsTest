@@ -9,10 +9,16 @@ pipeline {
 //         //environment variables go here
 //     }
 
+    //tools
+    tools {
+        maven 'Maven'
+    }
+
     stages {
         stage("Build") {
             steps {
                 echo "Building from ${NODE_NAME}"
+                sh 'mvn install'
             }
         }
 
