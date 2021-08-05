@@ -9,20 +9,25 @@ pipeline {
 //         //environment variables go here
 //     }
 
-    //tools
-    tools {
-        maven 'Maven'
+    parameters {
+        choice(name: 'VERSION', choices: ['1.1', '1.2', '1.3'], description: 'The version of the application')
+        booleanParam(name: 'ExecuteTest', defaultValue: true, description: 'Determines if tests will run')
     }
 
     stages {
         stage("Build") {
             steps {
-                echo "Building from ${NODE_NAME}"
-                sh 'mvn install'
+                echo "Building from ${BUILD_ID}"
+                echo "Version ${params.version}"
             }
         }
 
-        stage("Test") {
+        stage("Test"){
+            when {
+                expression {
+                    params.ExecuteTest == true
+                }
+            }
             steps {
                 echo "Testing"
             }
