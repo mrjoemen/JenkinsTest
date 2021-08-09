@@ -28,7 +28,12 @@ pipeline {
         }
 
         stage("Build") {
-            efunc.buildApp()
+            steps {
+                script {
+                    efunc.buildApp()
+                }
+            }
+
         }
 
         stage("Test"){
