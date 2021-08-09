@@ -19,20 +19,20 @@ pipeline {
 
     stages {
 
-/*         stage ("init") {
+       stage ("init") {
             steps {
                 script {
-                    efunc = load ".\\main\\vars\\ExampleFunction.groovy"
+                    efunc = load "ExampleFunction.groovy"
                 }
             }
 
-        } */
+        }
 
         stage("Build") {
             steps {
-//                 script {
-//                     efunc.buildApp()
-//                 }
+                script {
+                    efunc.buildApp()
+                }
                 echo "Hello there!"
             }
 
