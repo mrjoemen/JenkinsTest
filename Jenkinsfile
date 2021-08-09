@@ -7,9 +7,10 @@ pipeline {
 
     agent any
 
-//     environment {
-//         //environment variables go here
-//     }
+    environment {
+        // environment variables go here
+        SERVER_CREDENTIALS = credentials('myGithub')
+    }
 
     parameters { // this will allow the user to select parameters before a build
         choice(name: 'VERSION', choices: ['1.1', '1.2', '1.3'], description: 'The version of the application')
@@ -18,14 +19,14 @@ pipeline {
 
     stages {
 
-        stage ("init") {
+/*         stage ("init") {
             steps {
                 script {
                     efunc = load ".\\main\\vars\\ExampleFunction.groovy"
                 }
             }
 
-        }
+        } */
 
         stage("Build") {
             steps {
