@@ -1,6 +1,8 @@
 //localhost:8080/env-vars.html
 //the link above shows all the variables that could be manipulated
 
+def efunc
+
 pipeline {
 
     agent any
@@ -9,22 +11,30 @@ pipeline {
 //         //environment variables go here
 //     }
 
-    parameters {
+    parameters { // this will allow the user to select parameters before a build
         choice(name: 'VERSION', choices: ['1.1', '1.2', '1.3'], description: 'The version of the application')
         booleanParam(name: 'ExecuteTest', defaultValue: true, description: 'Determines if tests will run')
     }
 
     stages {
-        stage("Build") {
+
+        stage ("init") {
             steps {
-                echo "Building from ${BUILD_ID}"
-                echo "Version ${params.version}"
+                script {
+                    efunc = load ".\\main\\vars\\ExampleFunction.groovy"
+                }
             }
+
+        }
+
+        stage("Build") {
+            efunc.buildApp()
         }
 
         stage("Test"){
             when {
                 expression {
+                    // if ExecuteTest is equal to true, then this test stage will happen, otherwise it will not happen
                     params.ExecuteTest == true
                 }
             }
