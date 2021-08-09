@@ -30,9 +30,10 @@ pipeline {
 
         stage("Build") {
             steps {
-                script {
-                    efunc.buildApp()
-                }
+//                 script {
+//                     efunc.buildApp()
+//                 }
+                echo "Hello there!"
             }
 
         }
